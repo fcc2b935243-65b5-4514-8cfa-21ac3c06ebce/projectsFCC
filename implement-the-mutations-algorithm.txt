@@ -1,0 +1,30 @@
+** start of script.js **
+
+function mutation(array) {
+  let firstSentence = array[0].toLowerCase();
+  let secondSentence = array[1].toLowerCase()
+  let array1 = firstSentence.split("");
+  let array2 = secondSentence.split("");
+  let yesOrNo = false;
+  for (let char of array2) {
+    if (array1.includes(char)) {
+      yesOrNo = true;
+      console.log(char)
+    } else if (!array1.includes(char)) {
+      yesOrNo = false;
+      break
+    }
+  }
+  if (yesOrNo == true) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+let array = ["ate", "date"]
+console.log(mutation(array))
+
+** end of script.js **
+

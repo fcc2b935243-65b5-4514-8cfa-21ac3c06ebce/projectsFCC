@@ -1,0 +1,29 @@
+** start of script.js **
+
+function chunkArrayInGroups (theArray, num) {
+  let newArray = [];
+  for (let i = 0; i < theArray.length; i += num) {
+      newArray.push(theArray.slice(i, i + num));
+  }
+  return newArray;
+}
+
+console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3))
+
+** end of script.js **
+
+/*
+i = i + num: why?
+Each chunk is num items long.
+
+So once you've processed a chunk (say from index 0 to 2), the next chunk should start at index 3.
+
+Instead of going one by one (i++), you’re hopping over an entire chunk’s length.
+
+i + num — The Slicing Range
+This defines the end of the slice.
+
+For example: theArray.slice(i, i + num)
+If i is 0 and num is 3: slice(0, 3) gets items at indices 0, 1, and 2.
+
+*/

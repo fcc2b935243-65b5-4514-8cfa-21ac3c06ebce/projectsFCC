@@ -1,0 +1,19 @@
+** start of script.js **
+
+function maskEmail (email) {
+  let lastIndex = email.indexOf("@");
+  let numberOfStars = lastIndex - 2;
+  let mask = email.slice(1, lastIndex - 1);
+  let maskedEmail = email.replace(mask, "*".repeat(numberOfStars));
+  return maskedEmail;
+}
+
+let email = "myemail@email.com";
+console.log(maskEmail(email));
+
+console.log(maskEmail("apple.pie@example.com"))
+
+console.log(maskEmail("freecodecamp@example.com"));
+
+** end of script.js **
+

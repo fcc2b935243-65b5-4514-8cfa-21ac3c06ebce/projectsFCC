@@ -1,0 +1,25 @@
+** start of script.js **
+
+function sumAll(arr) {
+  let small = arr[0];
+  let big = arr[1];
+  let biggestNumber;
+  let smallNum;
+  let sum = 0;
+  if (small > big) {
+    biggestNumber = small;
+    smallNum = big;
+  } else if (big > small) {
+    biggestNumber = big;
+    smallNum = small;
+  }
+  for (let i = smallNum; i < biggestNumber + 1; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+
+
+** end of script.js **
+

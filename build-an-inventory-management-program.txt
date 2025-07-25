@@ -1,0 +1,60 @@
+** start of script.js **
+
+let inventory = [];
+
+function findProductIndex(name) {
+  let searchName = name.toLowerCase();
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].name.toLowerCase() === searchName) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function addProduct (object) {
+  let objectName = object.name.toLowerCase()
+  object.name = objectName;
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].name.toLowerCase() === objectName) {
+      inventory[i].quantity += object.quantity;
+      return console.log(objectName + " quantity updated");
+    }
+  }
+  inventory.push(object);
+  return console.log(objectName + " added to inventory");
+}
+
+function removeProduct (name, qtParam) {
+  name = name.toLowerCase();
+  let index = findProductIndex(name);
+  if (index !==(-1)) {
+    let currentQt = inventory[index].quantity;
+    let qt = inventory[index].quantity -= qtParam;
+    if (currentQt < qtParam) {
+      console.log("Not enough " + name + " available, remaining pieces: " + currentQt)
+    } else {
+    if (qt > 0) {
+      return console.log("Remaining " + name + " pieces: " + qt);
+    } else if (qt <= 0) {
+      inventory.splice(index, 1);
+      return console.log("removing product...");
+    }
+    }
+  } else {
+    return console.log(name + " not found");
+  }
+}
+
+addProduct({name: "FLOUR", quantity: 5});
+addProduct({name: "FLOUR", quantity: 5});
+console.log(inventory);
+
+removeProduct("flOur", 3);
+addProduct({name: "FLOUR", quantity: 5});
+removeProduct("flOur", 3);
+removeProduct("flOur", 9);
+
+
+** end of script.js **
+

@@ -1,0 +1,16 @@
+** start of script.js **
+
+function reverseString (string) {
+  let array = [];
+  for (let i = 0; i < string.length; i++) {
+    array.push(string[i]);
+  }
+  array.reverse();
+  return array.join("");
+}
+
+let string = "hi"
+console.log(reverseString(string))
+
+** end of script.js **
+

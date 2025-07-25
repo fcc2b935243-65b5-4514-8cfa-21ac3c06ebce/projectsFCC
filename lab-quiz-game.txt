@@ -1,0 +1,49 @@
+** start of script.js **
+
+const questions = [
+  {category: "movies",
+question: "movies?",
+choices: ["1", "2", "3"],
+answer: "1"},
+  {category: "cooking",
+question: "cooking?",
+choices: ["1", "2", "3"],
+answer: "2"},
+  {category: "music",
+question: "music?",
+choices: ["1", "2", "3"],
+answer: "3"},
+  {category: "art",
+question: "art?",
+choices: ["1", "2", "3"],
+answer: "1"},
+  {category: "sports",
+question: "sports?",
+choices: ["1", "2", "3"],
+answer: "2"}
+];
+
+function getRandomQuestion (array) {
+let randomNum = Math.floor(Math.random() * array.length);
+  let question = array[randomNum];
+  return question;
+}
+
+function getRandomComputerChoice (choiceArray) {
+  let randomNum = Math.floor(Math.random() * choiceArray.length);
+  let answer = choiceArray[randomNum];
+  return answer;
+}
+
+function getResults(object, choice) {
+  let result = object.answer;
+  if (result == choice) {
+    return `The computer's choice is correct!`;
+  } else {
+    return `The computer's choice is wrong. The correct answer is: ${result}`;
+  }
+}
+
+
+** end of script.js **
+

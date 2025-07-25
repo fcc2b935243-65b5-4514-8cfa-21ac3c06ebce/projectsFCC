@@ -1,0 +1,31 @@
+** start of script.js **
+
+function pyramid (chara, num, bool) {
+  if (bool == false) {
+  let result = 1;
+  let pyramidStr = "\n"; 
+  for (let i = 0; i < num; i++) {
+    let space = " ".repeat(num - i -1);
+    let char = chara.repeat(result);
+    pyramidStr += space + char + "\n";
+    result +=2;
+  }
+  return pyramidStr;
+  } else {
+      let pyramidStr = "\n"; 
+    for (let i = 0; i < num; i++) {
+      let width = 2 * (num - i) - 1;                
+      let space = " ".repeat(i);                    
+      let line = space + chara.repeat(width);
+      pyramidStr += line + "\n";
+    }
+
+    return pyramidStr;
+
+  }
+}
+
+console.log(pyramid("o", 4, true))
+
+** end of script.js **
+
