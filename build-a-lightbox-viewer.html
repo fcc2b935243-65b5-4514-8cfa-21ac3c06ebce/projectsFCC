@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightbox Viewer</title>
+    <style>
+      body {
+        background-color:gainsboro;
+      }
+
+      h1 {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 3rem;
+      }
+
+      .gallery {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .lightbox {
+        background-color: rgba(0, 0, 0, 0.3);
+        display: none;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gallery img {
+        width: 450px;
+        height: 400px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+
+      #close-btn {
+        bottom: 40%;
+        position: relative;
+        background: none;
+        color: white;
+        border: none;
+        font-size: 3rem;
+        cursor: pointer;
+      }
+
+      .lightbox img {
+        max-width: 70%;
+        max-height: 70%;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 700px) {
+        .lightbox img {
+          max-width: 100vw;
+          height: 50vh;
+          margin-left: 10px;
+        }
+        #close-btn {
+          bottom: 25%;
+          right: 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Build a Lightbox Viewer</h1>
+    <div class="gallery">
+      <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/stonehenge-thumbnail.jpg">
+      <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/storm-thumbnail.jpg">
+      <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/trees-thumbnail.jpg">
+    </div>
+    <div class="lightbox">
+      <img id="lightbox-image" src="https://cdn.freecodecamp.org/curriculum/labs/stonehenge.jpg">
+      <button id="close-btn">&times;</button>
+    </div>
+    <script>
+      let galleryImgs = document.querySelectorAll(".gallery-item");
+      let lightBoxDiv = document.querySelector(".lightbox");
+      let lightBoxImg = document.getElementById("lightbox-image");
+      let closeBtn = document.getElementById("close-btn");
+
+      galleryImgs.forEach((img) => {
+        img.addEventListener("click", () => {
+            lightBoxDiv.style.display = "flex"
+            lightBoxImg.src = changeSrc(img);
+        })
+      });
+
+      function changeSrc(img) {
+        let newSrc = img.src;
+        newSrc = newSrc.slice(0, -14).concat(".jpg");
+        return newSrc;
+      }
+
+      closeBtn.addEventListener("click", () => {
+        lightBoxDiv.style.display = "none"
+      })
+
+      lightBoxDiv.addEventListener("click", () => {
+        if (lightBoxDiv.style.display == "flex") {
+          lightBoxDiv.style.display = "none"
+        }
+      })
+    </script>   
+  </body>
+</html>
