@@ -1,0 +1,17 @@
+function frankenSplice(array1, array2, index) {
+  // Create a new array to hold the result
+  let resultArray = [];
+
+  // Add elements of array2 up to the specified index
+  resultArray = array2.slice(0, index);
+
+  // Add elements from array1
+  resultArray = resultArray.concat(array1);
+
+  // Add remaining elements of array2 after the index
+  resultArray = resultArray.concat(array2.slice(index));
+
+  return resultArray; // Return the newly formed array
+}
+
+console.log(frankenSplice([1, 2], ["a", "b"], 1)); // Expected output: ["a", 1, 2, "b"]
