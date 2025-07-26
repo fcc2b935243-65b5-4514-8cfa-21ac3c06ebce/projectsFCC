@@ -1,0 +1,199 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Build a Set of Football Team Cards
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Team stats</h1>
+    <main>
+      <div class="team-stats">
+        <p>Team: <span id="team"></span></p>
+        <p>Year: <span id="year"></span></p>
+        <p>Head coach: <span id="head-coach"></span></p>
+      </div>
+      <label class="options-label" for="players">Filter Teammates:</label>
+      <select name="players" id="players">
+        <option value="all">All Players</option>
+        <option value="forward">Position Forward</option>
+        <option value="midfielder">Position Midfielder</option>
+        <option value="defender">Position Defender</option>
+        <option value="goalkeeper">Position Goalkeeper</option>
+      </select>
+      <div class="cards" id="player-cards"></div>
+    </main>
+    <footer>&copy; freeCodeCamp</footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-grey: #0a0a23;
+  --light-grey: #f5f6f7;
+  --white: #ffffff;
+  --black: #000;
+}
+
+body {
+  background-color: var(--dark-grey);
+  text-align: center;
+  padding: 10px;
+}
+
+.title,
+.options-label,
+.team-stats,
+footer {
+  color: var(--white);
+}
+
+.title {
+  margin: 1.3rem 0;
+}
+
+.team-stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  margin: 1.2rem 0;
+}
+
+.options-label {
+  font-size: 1.2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-card {
+  background-color: var(--light-grey);
+  padding: 1.3rem;
+  margin: 1.2rem;
+  width: 300px;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .team-stats {
+    flex-direction: column;
+  }
+}
+
+
+** end of styles.css **
+
+** start of script.js **
+
+let footballTeam = {
+    team: "Praenomina",
+    year: 1992,
+    headCoach: "Coach D.",
+    players: [
+        {name: "Prima",
+        position: "forward",
+        isCaptain: true}, 
+        {name: "Secunda",
+        position: "forward",
+        isCaptain: false}, 
+        {name: "Tertia",
+        position: "midfielder",
+        isCaptain: false}, 
+        {name: "Quarta",
+        position: "midfielder",
+        isCaptain: false},
+        {name: "Quinta",
+        position: "midfielder",
+        isCaptain: false},
+        {name: "Sexta",
+        position: "defender",
+        isCaptain: false},
+        {name: "Octavia",
+        position: "defender",
+        isCaptain: false},
+        {name: "Nona",
+        position: "defender",
+        isCaptain: false},
+        {name: "Decima",
+        position: "goalkeeper",
+        isCaptain: false}
+    ]
+}
+
+const coachSpan = document.getElementById("head-coach");
+const teamSpan = document.getElementById("team");
+const yearSpan = document.getElementById("year");
+const playerCardsElem = document.getElementById("player-cards");
+const selectFilter = document.getElementById("players");
+
+coachSpan.innerText = footballTeam["headCoach"];
+teamSpan.innerText = footballTeam["team"];
+yearSpan.innerText = footballTeam["year"];
+
+function setData (array, position) {
+  let displayArr = []
+  for (let element in array) {
+    if (array[element]["position"] === position || position === "all") {
+        if (array[element]["isCaptain"]) {
+            displayArr.push(
+            `<div class="player-card">
+                <h2>(Captain) ${array[element]["name"]}</h2>
+                <p>Position: ${array[element]["position"]}</p>
+            </div>`)
+        } else {
+            displayArr.push(
+            `<div class="player-card">
+                <h2>${array[element]["name"]}</h2>
+                <p>Position: ${array[element]["position"]}</p>
+            </div>`)}
+    }
+  }
+  return displayArr.join("\n")
+}
+
+selectFilter.addEventListener("change", () => {
+    switch (selectFilter.value) {
+        case "all":
+            playerCardsElem.innerHTML = setData(footballTeam.players, "all");
+            break;
+        case "forward":
+            playerCardsElem.innerHTML = setData(footballTeam.players, "forward");
+            break;
+        case "midfielder":
+            playerCardsElem.innerHTML = setData(footballTeam.players, "midfielder");
+            break;
+        case "defender":
+            playerCardsElem.innerHTML = setData(footballTeam.players, "defender");
+            break;
+        case "goalkeeper":
+            playerCardsElem.innerHTML = setData(footballTeam.players, "goalkeeper")
+            break;
+    }
+})
+
+** end of script.js **
+
